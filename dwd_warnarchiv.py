@@ -7,14 +7,20 @@ Hintergrund: Der DWD hält auf opendata.dwd.de nur ein rollierendes Fenster von
 ca. 48 Stunden vor, ein Langzeitarchiv der CAP-Warnungen gibt es dort nicht.
 Für spätere Auswertungen muss man also selbst archivieren.
 
-Quelle:  https://opendata.dwd.de/weather/alerts/cap/DISTRICT_DWD_STAT/
-Produkt: Status-Snapshot aller aktuell gültigen Warnungen auf Landkreisebene,
-         deutsch (Dateien *_DISTRICT_DE.zip, etwa alle 10 Minuten neu).
+Quellen (Landkreisebene, deutsch):
+  STAT  https://opendata.dwd.de/weather/alerts/cap/DISTRICT_DWD_STAT/
+        Momentaufnahme aller gerade gültigen Warnungen.
+  DIFF  https://opendata.dwd.de/weather/alerts/cap/DISTRICT_DWD_DIFF/
+        Änderungen seit der vorigen Datei (neu / Update / Cancel), etwa alle
+        10 Minuten. Erfasst auch kurzlebige Warnungen, die zwischen zwei
+        STAT-Momentaufnahmen ausgegeben und wieder aufgehoben wurden.
+Beide Produkte werden ausgewertet; jede Warnung (CAP-identifier) wird nur
+einmal gespeichert.
 
 Nur Python-Standardbibliothek, keine Zusatzpakete nötig (Python >= 3.8).
 
 Aufruf:
-  python dwd_warnarchiv.py                 # neueste Snapshots holen und speichern
+  python dwd_warnarchiv.py                 # neue Dateien (STAT + DIFF) holen und speichern
   python dwd_warnarchiv.py --export        # zusätzlich CSV-Dateien für Excel schreiben
   python dwd_warnarchiv.py --file X.zip    # lokale ZIP-Datei einlesen (Test)
   python dwd_warnarchiv.py --alle-regionen # ganz Deutschland statt nur Filtergebiet
@@ -35,10 +41,14 @@ from pathlib import Path
 # --------------------------------------------------------------------------
 # Konfiguration
 # --------------------------------------------------------------------------
-BASIS_URL = "https://opendata.dwd.de/weather/alerts/cap/DISTRICT_DWD_STAT/"
-DATEI_MUSTER = re.compile(
-    r'href="(Z_CAP_C_EDZW_(\d{14})_PVW_STATUS_PREMIUMDWD_DISTRICT_DE\.zip)"'
-)
+BASIS = "https://opendata.dwd.de/weather/alerts/cap/"
+PRODUKTE = {
+    # Kürzel: (Verzeichnis, Muster der deutschen Dateien)
+    "STAT": ("DISTRICT_DWD_STAT/", re.compile(
+        r'href="(Z_CAP_C_EDZW_(\d{14})_PVW_STATUS_PREMIUMDWD_DISTRICT_DE\.zip)"')),
+    "DIFF": ("DISTRICT_DWD_DIFF/", re.compile(
+        r'href="(Z_CAP_C_EDZW_(\d{14})_PVW_DIFFERENCE_PREMIUMDWD_DISTRICT_DE\.zip)"')),
+}
 
 ORDNER = Path(__file__).resolve().parent
 DB_PFAD = ORDNER / "dwd_warnungen.sqlite"
@@ -123,8 +133,9 @@ CREATE TABLE IF NOT EXISTS snapshots (
     dateiname        TEXT PRIMARY KEY,
     zeitstempel_utc  TEXT NOT NULL,      -- aus dem Dateinamen
     verarbeitet_utc  TEXT NOT NULL,
-    anzahl_gesamt    INTEGER,            -- Warnungen bundesweit im Snapshot
-    anzahl_region    INTEGER             -- davon im Filtergebiet
+    anzahl_gesamt    INTEGER,            -- CAP-Meldungen bundesweit in der Datei
+    anzahl_region    INTEGER,            -- davon im Filtergebiet
+    produkt          TEXT                -- STAT oder DIFF
 );
 
 CREATE TABLE IF NOT EXISTS warnungen (
@@ -147,8 +158,8 @@ CREATE TABLE IF NOT EXISTS warnungen (
     description      TEXT,
     instruction      TEXT,
     parameter        TEXT,               -- z. B. Böen-/Niederschlagsangaben
-    erstmals_gesehen TEXT,               -- UTC, erster Snapshot mit dieser Warnung
-    zuletzt_gesehen  TEXT                -- UTC, letzter Snapshot mit dieser Warnung
+    erstmals_gesehen TEXT,               -- UTC, erste Datei mit dieser Meldung
+    zuletzt_gesehen  TEXT                -- UTC, letzte Datei mit dieser Meldung
 );
 
 CREATE TABLE IF NOT EXISTS warnung_gebiete (
@@ -172,6 +183,12 @@ FROM warnungen w JOIN warnung_gebiete g USING (identifier);
 def db_oeffnen():
     con = sqlite3.connect(DB_PFAD)
     con.executescript(SCHEMA)
+    # ältere Datenbanken (vor Einführung von DIFF) um Spalte "produkt" ergänzen
+    spalten = [r[1] for r in con.execute("PRAGMA table_info(snapshots)")]
+    if "produkt" not in spalten:
+        con.execute("ALTER TABLE snapshots ADD COLUMN produkt TEXT")
+        con.execute("UPDATE snapshots SET produkt = 'STAT' WHERE produkt IS NULL")
+        con.commit()
     return con
 
 
@@ -240,7 +257,7 @@ def im_filtergebiet(warnung, alle_regionen):
 # --------------------------------------------------------------------------
 # Snapshot verarbeiten
 # --------------------------------------------------------------------------
-def verarbeite_zip(con, dateiname, zeitstempel, zip_bytes, alle_regionen):
+def verarbeite_zip(con, produkt, dateiname, zeitstempel, zip_bytes, alle_regionen):
     jetzt = datetime.now(timezone.utc).isoformat(timespec="seconds")
     snap_zeit = datetime.strptime(zeitstempel, "%Y%m%d%H%M%S").replace(
         tzinfo=timezone.utc).isoformat()
@@ -282,49 +299,69 @@ def verarbeite_zip(con, dateiname, zeitstempel, zip_bytes, alle_regionen):
             )
 
     con.execute(
-        "INSERT OR REPLACE INTO snapshots VALUES (?, ?, ?, ?, ?)",
-        (dateiname, snap_zeit, jetzt, gesamt, region),
+        "INSERT OR REPLACE INTO snapshots "
+        "(dateiname, zeitstempel_utc, verarbeitet_utc, anzahl_gesamt, anzahl_region, produkt) "
+        "VALUES (?, ?, ?, ?, ?, ?)",
+        (dateiname, snap_zeit, jetzt, gesamt, region, produkt),
     )
     con.commit()
-    log(f"  {dateiname}: {gesamt} Warnungen bundesweit, {region} im Filtergebiet")
+    if gesamt or produkt == "STAT":
+        log(f"  [{produkt}] {dateiname}: {gesamt} Meldungen bundesweit, "
+            f"{region} im Filtergebiet")
 
 
-def lauf(alle_regionen):
-    con = db_oeffnen()
+def lauf_produkt(con, produkt, alle_regionen):
+    verzeichnis, muster = PRODUKTE[produkt]
+    url = BASIS + verzeichnis
     try:
-        html = hole(BASIS_URL).decode("utf-8", "replace")
+        html = hole(url).decode("utf-8", "replace")
     except Exception as e:
-        log(f"FEHLER beim Abruf der Verzeichnisliste: {e}")
+        log(f"[{produkt}] FEHLER beim Abruf der Verzeichnisliste: {e}")
         return 1
 
-    dateien = sorted(set(DATEI_MUSTER.findall(html)), key=lambda x: x[1])
+    dateien = sorted(set(muster.findall(html)), key=lambda x: x[1])
     if not dateien:
-        log("WARNUNG: keine passenden Dateien gefunden – hat der DWD das Format geändert?")
+        log(f"[{produkt}] WARNUNG: keine passenden Dateien – hat der DWD das Format geändert?")
         return 1
 
-    bekannt = {r[0] for r in con.execute("SELECT dateiname FROM snapshots")}
-    letzter = con.execute("SELECT MAX(zeitstempel_utc) FROM snapshots").fetchone()[0]
+    bekannt = {r[0] for r in con.execute(
+        "SELECT dateiname FROM snapshots WHERE produkt = ?", (produkt,))}
+    letzter = con.execute(
+        "SELECT MAX(zeitstempel_utc) FROM snapshots WHERE produkt = ?",
+        (produkt,)).fetchone()[0]
 
     if letzter is None:
-        offen = [dateien[-1]]  # Erstlauf: nur neuester Snapshot
+        # Erstlauf: STAT nur neueste Momentaufnahme,
+        # DIFF alles, was noch auf dem Server liegt (~48 h)
+        offen = [dateien[-1]] if produkt == "STAT" else dateien
     else:
         letzter_ts = datetime.fromisoformat(letzter).strftime("%Y%m%d%H%M%S")
         offen = [d for d in dateien if d[0] not in bekannt and d[1] > letzter_ts]
-        offen = offen[-MAX_NACHHOLEN:]
+    offen = offen[-MAX_NACHHOLEN:]
 
     if not offen:
-        log("Kein neuer Snapshot.")
+        log(f"[{produkt}] Keine neue Datei.")
         return 0
 
     fehler = 0
     for dateiname, ts in offen:
         try:
-            verarbeite_zip(con, dateiname, ts, hole(BASIS_URL + dateiname), alle_regionen)
+            verarbeite_zip(con, produkt, dateiname, ts, hole(url + dateiname),
+                           alle_regionen)
         except Exception as e:
             fehler += 1
-            log(f"  FEHLER bei {dateiname}: {e}")
-    con.close()
+            log(f"  [{produkt}] FEHLER bei {dateiname}: {e}")
+    log(f"[{produkt}] {len(offen)} Datei(en) verarbeitet, {fehler} Fehler.")
     return 1 if fehler else 0
+
+
+def lauf(alle_regionen):
+    con = db_oeffnen()
+    rc = 0
+    for produkt in PRODUKTE:
+        rc |= lauf_produkt(con, produkt, alle_regionen)
+    con.close()
+    return rc
 
 
 def exportiere_csv():
@@ -355,7 +392,9 @@ def main():
         p = Path(args.file)
         m = re.search(r"_(\d{14})_", p.name)
         ts = m.group(1) if m else datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
-        verarbeite_zip(db_oeffnen(), p.name, ts, p.read_bytes(), args.alle_regionen)
+        produkt = "DIFF" if "_DIFFERENCE_" in p.name else "STAT"
+        verarbeite_zip(db_oeffnen(), produkt, p.name, ts, p.read_bytes(),
+                       args.alle_regionen)
     else:
         rc = lauf(args.alle_regionen)
 
