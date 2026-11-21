@@ -1,0 +1,42 @@
+name: DWD-Warnarchiv
+
+on:
+  schedule:
+    # stündlich (UTC). Verspätete oder ausgefallene Läufe sind unkritisch,
+    # weil das Skript verpasste Snapshots der letzten ~48 h nachholt.
+    - cron: '17 * * * *'
+  workflow_dispatch:   # manueller Start über den Reiter "Actions"
+
+permissions:
+  contents: write      # nötig, damit der Lauf die Datenbank zurückschreiben darf
+
+concurrency:
+  group: dwd-warnarchiv
+  cancel-in-progress: false
+
+jobs:
+  archivieren:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Warnungen abrufen und speichern
+        run: python dwd_warnarchiv.py --export
+
+      - name: Ergebnis ins Repository schreiben
+        if: always()
+        run: |
+          git config user.name  "dwd-archiv-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dwd_warnungen.sqlite export_*.csv || true
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen."
+          else
+            git commit -m "Archiv-Update $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi

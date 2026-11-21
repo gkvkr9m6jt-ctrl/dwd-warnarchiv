@@ -1,0 +1,10 @@
+﻿area_desc;warncellid;identifier;sent;msg_type;status;references_;event;ii_code;gruppe;severity;urgency;certainty;response_type;effective;onset;expires;headline;description;instruction;parameter;erstmals_gesehen;zuletzt_gesehen
+Kreis Kitzingen;109675000;2.49.0.0.276.0.DWD.PVW.1795260660000.7a1373e2-6820-4da7-a51c-dc57be61425a.DEU;2026-11-21T12:31:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-21T12:31:00+01:00;2026-11-21T21:00:00+01:00;2026-11-22T09:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost bis -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
+Handlungsempfehlungen: 
+ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-21T17:41:11+00:00;2026-11-21T17:41:11+00:00
+Kreis Main-Spessart;109677000;2.49.0.0.276.0.DWD.PVW.1795260660000.7a1373e2-6820-4da7-a51c-dc57be61425a.DEU;2026-11-21T12:31:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-21T12:31:00+01:00;2026-11-21T21:00:00+01:00;2026-11-22T09:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost bis -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
+Handlungsempfehlungen: 
+ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-21T17:41:11+00:00;2026-11-21T17:41:11+00:00
+Kreis und Stadt Würzburg;909679999;2.49.0.0.276.0.DWD.PVW.1795260660000.7a1373e2-6820-4da7-a51c-dc57be61425a.DEU;2026-11-21T12:31:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-21T12:31:00+01:00;2026-11-21T21:00:00+01:00;2026-11-22T09:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost bis -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
+Handlungsempfehlungen: 
+ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-21T17:41:11+00:00;2026-11-21T17:41:11+00:00
