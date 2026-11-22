@@ -25,13 +25,13 @@ Handlungsempfehlungen:
 ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=~-1 [°C];2026-11-22T08:25:52+00:00;2026-11-22T18:53:12+00:00
 Kreis Kitzingen;109675000;2.49.0.0.276.0.DWD.PVW.1795347060000.de96d604-1900-4981-8943-178f7271438a.DEU;2026-11-22T12:31:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-22T12:31:00+01:00;2026-11-22T20:00:00+01:00;2026-11-23T12:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost bis -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
-ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-22T11:30:11+00:00;2026-11-22T21:52:22+00:00
+ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-22T11:30:11+00:00;2026-11-22T22:44:03+00:00
 Kreis Kitzingen;109675000;2.49.0.0.276.0.DWD.PVW.1795381020000.7da65d91-1083-4b57-a46d-f9dcbd8d04b4.DEU;2026-11-22T21:57:00+01:00;Alert;Actual;;GLÄTTE;84;SLIPPERINESS;Minor;Immediate;Likely;Prepare;2026-11-22T21:57:00+01:00;2026-11-22T22:00:00+01:00;2026-11-23T10:00:00+01:00;Amtliche WARNUNG vor GLÄTTE;Es besteht Glättegefahr.;"Hinweis auf: Rutschgefahr. 
 Handlungsempfehlungen: 
-Verhalten im Straßenverkehr anpassen";;2026-11-22T20:56:18+00:00;2026-11-22T21:52:22+00:00
+Verhalten im Straßenverkehr anpassen";;2026-11-22T20:56:18+00:00;2026-11-22T22:44:03+00:00
 Kreis Kitzingen;109675000;2.49.0.0.276.0.DWD.PVW.1795381020000.95369eb1-2995-4eab-a8dd-3308416d032d.DEU;2026-11-22T21:57:00+01:00;Alert;Actual;;NEBEL;59;FOG;Minor;Immediate;Likely;Prepare;2026-11-22T21:57:00+01:00;2026-11-22T22:00:00+01:00;2026-11-23T09:00:00+01:00;Amtliche WARNUNG vor NEBEL;Es tritt gebietsweise Nebel mit Sichtweiten unter 150 Metern auf.;"Hinweis auf: mögliche starke Sichteinschränkungen. 
 Handlungsempfehlungen: 
-Fahrverhalten an plötzlich auftretende Sichtbehinderungen (Nebelbänke) anpassen";visibility=<150 [m];2026-11-22T20:56:18+00:00;2026-11-22T21:52:22+00:00
+Fahrverhalten an plötzlich auftretende Sichtbehinderungen (Nebelbänke) anpassen";visibility=<150 [m];2026-11-22T20:56:18+00:00;2026-11-22T22:44:03+00:00
 Kreis Main-Spessart;109677000;2.49.0.0.276.0.DWD.PVW.1795260660000.7a1373e2-6820-4da7-a51c-dc57be61425a.DEU;2026-11-21T12:31:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-21T12:31:00+01:00;2026-11-21T21:00:00+01:00;2026-11-22T09:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost bis -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
 ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-21T11:30:13+00:00;2026-11-22T07:53:14+00:00
@@ -64,16 +64,16 @@ Handlungsempfehlungen:
 ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=~-1 [°C];2026-11-22T08:25:52+00:00;2026-11-22T18:53:12+00:00
 Kreis Main-Spessart;109677000;2.49.0.0.276.0.DWD.PVW.1795347060000.de96d604-1900-4981-8943-178f7271438a.DEU;2026-11-22T12:31:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-22T12:31:00+01:00;2026-11-22T20:00:00+01:00;2026-11-23T12:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost bis -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
-ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-22T11:30:11+00:00;2026-11-22T21:52:22+00:00
+ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-22T11:30:11+00:00;2026-11-22T22:44:03+00:00
 Kreis Main-Spessart;109677000;2.49.0.0.276.0.DWD.PVW.1795374960000.997e0a44-0cf4-4840-b904-d5127e713924.DEU;2026-11-22T20:16:00+01:00;Alert;Actual;;NEBEL;59;FOG;Minor;Immediate;Likely;Prepare;2026-11-22T20:16:00+01:00;2026-11-22T20:16:00+01:00;2026-11-23T09:00:00+01:00;Amtliche WARNUNG vor NEBEL;Es tritt gebietsweise Nebel mit Sichtweiten unter 150 Metern auf.;"Hinweis auf: mögliche starke Sichteinschränkungen. 
 Handlungsempfehlungen: 
 Fahrverhalten an plötzlich auftretende Sichtbehinderungen (Nebelbänke) anpassen";visibility=<150 [m];2026-11-22T19:15:12+00:00;2026-11-22T20:46:42+00:00
 Kreis Main-Spessart;109677000;2.49.0.0.276.0.DWD.PVW.1795381020000.7da65d91-1083-4b57-a46d-f9dcbd8d04b4.DEU;2026-11-22T21:57:00+01:00;Alert;Actual;;GLÄTTE;84;SLIPPERINESS;Minor;Immediate;Likely;Prepare;2026-11-22T21:57:00+01:00;2026-11-22T22:00:00+01:00;2026-11-23T10:00:00+01:00;Amtliche WARNUNG vor GLÄTTE;Es besteht Glättegefahr.;"Hinweis auf: Rutschgefahr. 
 Handlungsempfehlungen: 
-Verhalten im Straßenverkehr anpassen";;2026-11-22T20:56:18+00:00;2026-11-22T21:52:22+00:00
+Verhalten im Straßenverkehr anpassen";;2026-11-22T20:56:18+00:00;2026-11-22T22:44:03+00:00
 Kreis Main-Spessart;109677000;2.49.0.0.276.0.DWD.PVW.1795381020000.238dec38-aa7b-4ba9-867c-5dab751640ec.DEU;2026-11-22T21:57:00+01:00;Update;Actual;opendata@dwd.de,2.49.0.0.276.0.DWD.PVW.1795374960000.997e0a44-0cf4-4840-b904-d5127e713924.DEU,2026-11-22T20:16:00+01:00;NEBEL;59;FOG;Minor;Immediate;Likely;Prepare;2026-11-22T21:57:00+01:00;2026-11-22T22:00:00+01:00;2026-11-23T09:00:00+01:00;Amtliche WARNUNG vor NEBEL;Es tritt gebietsweise Nebel mit Sichtweiten unter 150 Metern auf.;"Hinweis auf: mögliche starke Sichteinschränkungen. 
 Handlungsempfehlungen: 
-Fahrverhalten an plötzlich auftretende Sichtbehinderungen (Nebelbänke) anpassen";visibility=<150 [m];2026-11-22T20:56:18+00:00;2026-11-22T21:52:22+00:00
+Fahrverhalten an plötzlich auftretende Sichtbehinderungen (Nebelbänke) anpassen";visibility=<150 [m];2026-11-22T20:56:18+00:00;2026-11-22T22:44:03+00:00
 Kreis und Stadt Würzburg;909679999;2.49.0.0.276.0.DWD.PVW.1795260660000.7a1373e2-6820-4da7-a51c-dc57be61425a.DEU;2026-11-21T12:31:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-21T12:31:00+01:00;2026-11-21T21:00:00+01:00;2026-11-22T09:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost bis -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
 ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-21T11:30:13+00:00;2026-11-22T07:53:14+00:00
@@ -100,10 +100,10 @@ Handlungsempfehlungen:
 ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=~-1 [°C];2026-11-22T08:25:52+00:00;2026-11-22T18:53:12+00:00
 Kreis und Stadt Würzburg;909679999;2.49.0.0.276.0.DWD.PVW.1795347060000.de96d604-1900-4981-8943-178f7271438a.DEU;2026-11-22T12:31:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-22T12:31:00+01:00;2026-11-22T20:00:00+01:00;2026-11-23T12:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost bis -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
-ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-22T11:30:11+00:00;2026-11-22T21:52:22+00:00
+ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-22T11:30:11+00:00;2026-11-22T22:44:03+00:00
 Kreis und Stadt Würzburg;909679999;2.49.0.0.276.0.DWD.PVW.1795381020000.7da65d91-1083-4b57-a46d-f9dcbd8d04b4.DEU;2026-11-22T21:57:00+01:00;Alert;Actual;;GLÄTTE;84;SLIPPERINESS;Minor;Immediate;Likely;Prepare;2026-11-22T21:57:00+01:00;2026-11-22T22:00:00+01:00;2026-11-23T10:00:00+01:00;Amtliche WARNUNG vor GLÄTTE;Es besteht Glättegefahr.;"Hinweis auf: Rutschgefahr. 
 Handlungsempfehlungen: 
-Verhalten im Straßenverkehr anpassen";;2026-11-22T20:56:18+00:00;2026-11-22T21:52:22+00:00
+Verhalten im Straßenverkehr anpassen";;2026-11-22T20:56:18+00:00;2026-11-22T22:44:03+00:00
 Kreis und Stadt Würzburg;909679999;2.49.0.0.276.0.DWD.PVW.1795381020000.95369eb1-2995-4eab-a8dd-3308416d032d.DEU;2026-11-22T21:57:00+01:00;Alert;Actual;;NEBEL;59;FOG;Minor;Immediate;Likely;Prepare;2026-11-22T21:57:00+01:00;2026-11-22T22:00:00+01:00;2026-11-23T09:00:00+01:00;Amtliche WARNUNG vor NEBEL;Es tritt gebietsweise Nebel mit Sichtweiten unter 150 Metern auf.;"Hinweis auf: mögliche starke Sichteinschränkungen. 
 Handlungsempfehlungen: 
-Fahrverhalten an plötzlich auftretende Sichtbehinderungen (Nebelbänke) anpassen";visibility=<150 [m];2026-11-22T20:56:18+00:00;2026-11-22T21:52:22+00:00
+Fahrverhalten an plötzlich auftretende Sichtbehinderungen (Nebelbänke) anpassen";visibility=<150 [m];2026-11-22T20:56:18+00:00;2026-11-22T22:44:03+00:00
