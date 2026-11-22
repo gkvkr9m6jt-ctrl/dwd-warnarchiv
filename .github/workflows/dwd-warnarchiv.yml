@@ -3,12 +3,18 @@ name: DWD-Warnarchiv
 on:
   schedule:
     # stündlich (UTC). Verspätete oder ausgefallene Läufe sind unkritisch,
-    # weil das Skript verpasste Snapshots der letzten ~48 h nachholt.
+    # weil das Skript verpasste Dateien der letzten ~48 h nachholt.
     - cron: '17 * * * *'
   workflow_dispatch:   # manueller Start über den Reiter "Actions"
+    inputs:
+      testalarm:
+        description: 'Alarm testweise auslösen (legt ein Issue an)'
+        type: boolean
+        default: false
 
 permissions:
-  contents: write      # nötig, damit der Lauf die Datenbank zurückschreiben darf
+  contents: write      # Datenbank zurückschreiben
+  issues: write        # Alarm-Issue anlegen
 
 concurrency:
   group: dwd-warnarchiv
@@ -25,7 +31,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Warnungen abrufen und speichern
+      - name: Warnungen abrufen, speichern und Vollständigkeit prüfen
         run: python dwd_warnarchiv.py --export
 
       - name: Ergebnis ins Repository schreiben
@@ -39,4 +45,26 @@ jobs:
           else
             git commit -m "Archiv-Update $(date -u +%Y-%m-%dT%H:%MZ)"
             git push
+          fi
+
+      - name: Testalarm
+        if: ${{ inputs.testalarm }}
+        run: |
+          echo "- Testalarm, manuell ausgelöst. Kein Handlungsbedarf." > alarm.txt
+          exit 1
+
+      - name: Alarm-Issue anlegen
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LAUF_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          titel="Warnarchiv: Alarm"
+          gruende="$(cat alarm.txt 2>/dev/null || echo '- Lauf fehlgeschlagen, Ursache siehe Log.')"
+          body="$(printf 'Zeitpunkt: %s UTC\nLauf: %s\n\n%s\n\nBitte prüfen. Daten auf dem DWD-Server bleiben ca. 48 h verfügbar und werden nach Behebung automatisch nachgeholt.' "$(date -u '+%d.%m.%Y %H:%M')" "$LAUF_URL" "$gruende")"
+          nr="$(gh issue list --state open --search "in:title \"$titel\"" --json number -q '.[0].number')"
+          if [ -n "$nr" ]; then
+            gh issue comment "$nr" --body "$body"
+          else
+            gh issue create --title "$titel" --body "$body"
           fi

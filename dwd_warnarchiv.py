@@ -24,6 +24,10 @@ Aufruf:
   python dwd_warnarchiv.py --export        # zusätzlich CSV-Dateien für Excel schreiben
   python dwd_warnarchiv.py --file X.zip    # lokale ZIP-Datei einlesen (Test)
   python dwd_warnarchiv.py --alle-regionen # ganz Deutschland statt nur Filtergebiet
+
+Nach jedem Abruf wird die Vollständigkeit geprüft (Tabelle "luecken").
+Rückgabewert 2 = Alarm (Lücke, veralteter Datenstand oder Abruffehler);
+die Gründe stehen dann in alarm.txt.
 """
 
 import argparse
@@ -72,6 +76,12 @@ REGION_NAMEN = ("Würzburg", "Kitzingen", "Main-Spessart")
 # Nach längerem Ausfall (PC aus) werden verpasste Snapshots nachgeholt,
 # solange sie noch auf dem Server liegen (~48 h). Obergrenze pro Lauf:
 MAX_NACHHOLEN = 300
+
+# Vollständigkeitsprüfung (nur DIFF, da der DWD dort alle ~5–13 min eine
+# Datei veröffentlicht, auch wenn sie leer ist):
+LUECKE_AB_MINUTEN = 30     # größerer Abstand zwischen zwei DIFF-Dateien = Lücke
+MAX_DATENALTER_STD = 6     # neueste DIFF-Datei älter als das = Alarm
+ALARM_DATEI = ORDNER / "alarm.txt"
 
 HTTP_TIMEOUT = 60
 USER_AGENT = "DWD-Warnarchiv/1.0 (Python urllib)"
@@ -167,6 +177,15 @@ CREATE TABLE IF NOT EXISTS warnung_gebiete (
     warncellid       TEXT NOT NULL,
     area_desc        TEXT,
     PRIMARY KEY (identifier, warncellid)
+);
+
+CREATE TABLE IF NOT EXISTS luecken (
+    produkt          TEXT NOT NULL,
+    von_utc          TEXT NOT NULL,      -- letzte Datei vor der Lücke
+    bis_utc          TEXT NOT NULL,      -- erste Datei nach der Lücke
+    minuten          INTEGER NOT NULL,   -- Abstand zwischen beiden Dateien
+    erkannt_utc      TEXT NOT NULL,
+    PRIMARY KEY (produkt, von_utc)
 );
 
 CREATE INDEX IF NOT EXISTS idx_w_onset ON warnungen(onset);
@@ -364,10 +383,46 @@ def lauf(alle_regionen):
     return rc
 
 
+def pruefe_vollstaendigkeit(con):
+    """Trägt Lücken im DIFF-Verlauf in die Tabelle 'luecken' ein und prüft,
+    ob der Datenstand aktuell ist. Gibt eine Liste von Alarmgründen zurück."""
+    gruende = []
+    jetzt = datetime.now(timezone.utc)
+    zeiten = [datetime.fromisoformat(r[0]) for r in con.execute(
+        "SELECT zeitstempel_utc FROM snapshots WHERE produkt = 'DIFF' ORDER BY 1")]
+
+    neu = 0
+    for a, b in zip(zeiten, zeiten[1:]):
+        minuten = round((b - a).total_seconds() / 60)
+        if minuten > LUECKE_AB_MINUTEN:
+            cur = con.execute(
+                "INSERT OR IGNORE INTO luecken VALUES ('DIFF', ?, ?, ?, ?)",
+                (a.isoformat(), b.isoformat(), minuten,
+                 jetzt.isoformat(timespec="seconds")))
+            if cur.rowcount:
+                neu += 1
+                gruende.append(f"Neue Lücke im DIFF-Verlauf: {a:%d.%m.%Y %H:%M} bis "
+                               f"{b:%d.%m.%Y %H:%M} UTC ({minuten} min)")
+    con.commit()
+    gesamt = con.execute("SELECT COUNT(*) FROM luecken").fetchone()[0]
+    log(f"Vollständigkeit: {gesamt} Lücke(n) insgesamt, davon {neu} neu.")
+
+    if not zeiten:
+        gruende.append("Noch keine DIFF-Datei im Archiv.")
+    else:
+        alter = (jetzt - zeiten[-1]).total_seconds() / 3600
+        if alter > MAX_DATENALTER_STD:
+            gruende.append(f"Neueste DIFF-Datei ist {alter:.1f} h alt "
+                           f"(Grenze {MAX_DATENALTER_STD} h). Ab ca. 48 h gehen "
+                           "Daten unwiederbringlich verloren.")
+    return gruende
+
+
 def exportiere_csv():
     con = db_oeffnen()
     for tabelle, datei in (("v_warnungen_gebiete", "export_warnungen_gebiete.csv"),
-                           ("snapshots", "export_snapshots.csv")):
+                           ("snapshots", "export_snapshots.csv"),
+                           ("luecken", "export_luecken.csv")):
         cur = con.execute(f"SELECT * FROM {tabelle} ORDER BY 1")
         pfad = ORDNER / datei
         # utf-8-sig + Semikolon: öffnet in deutschem Excel direkt korrekt
@@ -397,6 +452,17 @@ def main():
                        args.alle_regionen)
     else:
         rc = lauf(args.alle_regionen)
+        con = db_oeffnen()
+        gruende = pruefe_vollstaendigkeit(con)
+        con.close()
+        if rc:
+            gruende.insert(0, "Mindestens ein Abruf ist fehlgeschlagen (Details im Lauf-Log).")
+        if gruende:
+            for g in gruende:
+                log("ALARM: " + g)
+            ALARM_DATEI.write_text("\n".join(f"- {g}" for g in gruende) + "\n",
+                                   encoding="utf-8")
+            rc = 2
 
     if args.export:
         exportiere_csv()
