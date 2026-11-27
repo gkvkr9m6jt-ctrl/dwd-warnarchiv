@@ -91,13 +91,13 @@ Handlungsempfehlungen:
 Verhalten im Straßenverkehr anpassen";occurrence=isolated;2026-11-27T08:53:16+00:00;2026-11-27T14:56:44+00:00
 Kreis Kitzingen;109675000;2.49.0.0.276.0.DWD.PVW.1795779180000.36bd06a3-151e-4e60-a842-8e84807f7af0.DEU;2026-11-27T12:33:00+01:00;Update;Actual;opendata@dwd.de,2.49.0.0.276.0.DWD.PVW.1795769040000.87d078f7-407a-450b-b516-a2ff21f0a58f.DEU,2026-11-27T09:44:00+01:00;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-27T12:33:00+01:00;2026-11-27T12:00:00+01:00;2026-11-28T12:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost zwischen -1 °C und -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
-ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=-1 - -4 [°C];2026-11-27T11:32:36+00:00;2026-11-27T17:20:07+00:00
+ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=-1 - -4 [°C];2026-11-27T11:32:36+00:00;2026-11-27T19:00:33+00:00
 Kreis Kitzingen;109675000;2.49.0.0.276.0.DWD.PVW.1795779180000.56a5b374-7243-4f4f-a72f-a40a12afe3b9.DEU;2026-11-27T12:33:00+01:00;Alert;Actual;;GLÄTTE;84;SLIPPERINESS;Minor;Immediate;Likely;Prepare;2026-11-27T12:33:00+01:00;2026-11-27T16:00:00+01:00;2026-11-28T11:00:00+01:00;Amtliche WARNUNG vor GLÄTTE;Es besteht Glättegefahr.;"Hinweis auf: Rutschgefahr. 
 Handlungsempfehlungen: 
 Verhalten im Straßenverkehr anpassen";;2026-11-27T11:32:36+00:00;2026-11-27T11:59:04+00:00
 Kreis Kitzingen;109675000;2.49.0.0.276.0.DWD.PVW.1795781400000.55e659a9-db13-4455-ba5a-a70ea26461ea.DEU;2026-11-27T13:10:00+01:00;Update;Actual;opendata@dwd.de,2.49.0.0.276.0.DWD.PVW.1795779180000.56a5b374-7243-4f4f-a72f-a40a12afe3b9.DEU,2026-11-27T12:33:00+01:00;GLÄTTE;84;SLIPPERINESS;Minor;Immediate;Likely;Prepare;2026-11-27T13:10:00+01:00;2026-11-27T16:00:00+01:00;2026-11-28T11:00:00+01:00;Amtliche WARNUNG vor GLÄTTE;Es besteht Glättegefahr.;"Hinweis auf: Rutschgefahr. 
 Handlungsempfehlungen: 
-Verhalten im Straßenverkehr anpassen";;2026-11-27T12:09:55+00:00;2026-11-27T17:20:07+00:00
+Verhalten im Straßenverkehr anpassen";;2026-11-27T12:09:55+00:00;2026-11-27T19:00:33+00:00
 Kreis Main-Spessart;109677000;2.49.0.0.276.0.DWD.PVW.1795260660000.7a1373e2-6820-4da7-a51c-dc57be61425a.DEU;2026-11-21T12:31:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-21T12:31:00+01:00;2026-11-21T21:00:00+01:00;2026-11-22T09:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost bis -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
 ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-21T11:30:13+00:00;2026-11-22T07:53:14+00:00
@@ -187,13 +187,13 @@ Handlungsempfehlungen:
 Verhalten im Straßenverkehr anpassen";occurrence=isolated;2026-11-27T08:53:16+00:00;2026-11-27T14:56:44+00:00
 Kreis Main-Spessart;109677000;2.49.0.0.276.0.DWD.PVW.1795779180000.36bd06a3-151e-4e60-a842-8e84807f7af0.DEU;2026-11-27T12:33:00+01:00;Update;Actual;opendata@dwd.de,2.49.0.0.276.0.DWD.PVW.1795769040000.87d078f7-407a-450b-b516-a2ff21f0a58f.DEU,2026-11-27T09:44:00+01:00;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-27T12:33:00+01:00;2026-11-27T12:00:00+01:00;2026-11-28T12:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost zwischen -1 °C und -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
-ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=-1 - -4 [°C];2026-11-27T11:32:36+00:00;2026-11-27T17:20:07+00:00
+ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=-1 - -4 [°C];2026-11-27T11:32:36+00:00;2026-11-27T19:00:33+00:00
 Kreis Main-Spessart;109677000;2.49.0.0.276.0.DWD.PVW.1795779180000.56a5b374-7243-4f4f-a72f-a40a12afe3b9.DEU;2026-11-27T12:33:00+01:00;Alert;Actual;;GLÄTTE;84;SLIPPERINESS;Minor;Immediate;Likely;Prepare;2026-11-27T12:33:00+01:00;2026-11-27T16:00:00+01:00;2026-11-28T11:00:00+01:00;Amtliche WARNUNG vor GLÄTTE;Es besteht Glättegefahr.;"Hinweis auf: Rutschgefahr. 
 Handlungsempfehlungen: 
 Verhalten im Straßenverkehr anpassen";;2026-11-27T11:32:36+00:00;2026-11-27T11:59:04+00:00
 Kreis Main-Spessart;109677000;2.49.0.0.276.0.DWD.PVW.1795781400000.55e659a9-db13-4455-ba5a-a70ea26461ea.DEU;2026-11-27T13:10:00+01:00;Update;Actual;opendata@dwd.de,2.49.0.0.276.0.DWD.PVW.1795779180000.56a5b374-7243-4f4f-a72f-a40a12afe3b9.DEU,2026-11-27T12:33:00+01:00;GLÄTTE;84;SLIPPERINESS;Minor;Immediate;Likely;Prepare;2026-11-27T13:10:00+01:00;2026-11-27T16:00:00+01:00;2026-11-28T11:00:00+01:00;Amtliche WARNUNG vor GLÄTTE;Es besteht Glättegefahr.;"Hinweis auf: Rutschgefahr. 
 Handlungsempfehlungen: 
-Verhalten im Straßenverkehr anpassen";;2026-11-27T12:09:55+00:00;2026-11-27T17:20:07+00:00
+Verhalten im Straßenverkehr anpassen";;2026-11-27T12:09:55+00:00;2026-11-27T19:00:33+00:00
 Kreis und Stadt Würzburg;909679999;2.49.0.0.276.0.DWD.PVW.1795260660000.7a1373e2-6820-4da7-a51c-dc57be61425a.DEU;2026-11-21T12:31:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-21T12:31:00+01:00;2026-11-21T21:00:00+01:00;2026-11-22T09:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost bis -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
 ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-21T11:30:13+00:00;2026-11-22T07:53:14+00:00
@@ -277,10 +277,10 @@ Handlungsempfehlungen:
 Verhalten im Straßenverkehr anpassen";occurrence=isolated;2026-11-27T08:53:16+00:00;2026-11-27T14:56:44+00:00
 Kreis und Stadt Würzburg;909679999;2.49.0.0.276.0.DWD.PVW.1795779180000.36bd06a3-151e-4e60-a842-8e84807f7af0.DEU;2026-11-27T12:33:00+01:00;Update;Actual;opendata@dwd.de,2.49.0.0.276.0.DWD.PVW.1795769040000.87d078f7-407a-450b-b516-a2ff21f0a58f.DEU,2026-11-27T09:44:00+01:00;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-27T12:33:00+01:00;2026-11-27T12:00:00+01:00;2026-11-28T12:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost zwischen -1 °C und -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
-ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=-1 - -4 [°C];2026-11-27T11:32:36+00:00;2026-11-27T17:20:07+00:00
+ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=-1 - -4 [°C];2026-11-27T11:32:36+00:00;2026-11-27T19:00:33+00:00
 Kreis und Stadt Würzburg;909679999;2.49.0.0.276.0.DWD.PVW.1795779180000.56a5b374-7243-4f4f-a72f-a40a12afe3b9.DEU;2026-11-27T12:33:00+01:00;Alert;Actual;;GLÄTTE;84;SLIPPERINESS;Minor;Immediate;Likely;Prepare;2026-11-27T12:33:00+01:00;2026-11-27T16:00:00+01:00;2026-11-28T11:00:00+01:00;Amtliche WARNUNG vor GLÄTTE;Es besteht Glättegefahr.;"Hinweis auf: Rutschgefahr. 
 Handlungsempfehlungen: 
 Verhalten im Straßenverkehr anpassen";;2026-11-27T11:32:36+00:00;2026-11-27T11:59:04+00:00
 Kreis und Stadt Würzburg;909679999;2.49.0.0.276.0.DWD.PVW.1795781400000.55e659a9-db13-4455-ba5a-a70ea26461ea.DEU;2026-11-27T13:10:00+01:00;Update;Actual;opendata@dwd.de,2.49.0.0.276.0.DWD.PVW.1795779180000.56a5b374-7243-4f4f-a72f-a40a12afe3b9.DEU,2026-11-27T12:33:00+01:00;GLÄTTE;84;SLIPPERINESS;Minor;Immediate;Likely;Prepare;2026-11-27T13:10:00+01:00;2026-11-27T16:00:00+01:00;2026-11-28T11:00:00+01:00;Amtliche WARNUNG vor GLÄTTE;Es besteht Glättegefahr.;"Hinweis auf: Rutschgefahr. 
 Handlungsempfehlungen: 
-Verhalten im Straßenverkehr anpassen";;2026-11-27T12:09:55+00:00;2026-11-27T17:20:07+00:00
+Verhalten im Straßenverkehr anpassen";;2026-11-27T12:09:55+00:00;2026-11-27T19:00:33+00:00
