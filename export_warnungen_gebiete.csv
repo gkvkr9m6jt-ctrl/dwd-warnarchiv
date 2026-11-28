@@ -100,7 +100,7 @@ Handlungsempfehlungen:
 Verhalten im Straßenverkehr anpassen";;2026-11-27T12:09:55+00:00;2026-11-28T09:51:23+00:00
 Kreis Kitzingen;109675000;2.49.0.0.276.0.DWD.PVW.1795865880000.1ff8b35e-2688-483d-84a9-f230ae2f5775.DEU;2026-11-28T12:38:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-28T12:38:00+01:00;2026-11-28T16:00:00+01:00;2026-11-29T12:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt mäßiger Frost zwischen -2 °C und -6 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
-ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=-2 - -6 [°C];2026-11-28T11:37:48+00:00;2026-11-28T14:12:37+00:00
+ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=-2 - -6 [°C];2026-11-28T11:37:48+00:00;2026-11-28T14:59:02+00:00
 Kreis Main-Spessart;109677000;2.49.0.0.276.0.DWD.PVW.1795260660000.7a1373e2-6820-4da7-a51c-dc57be61425a.DEU;2026-11-21T12:31:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-21T12:31:00+01:00;2026-11-21T21:00:00+01:00;2026-11-22T09:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost bis -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
 ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-21T11:30:13+00:00;2026-11-22T07:53:14+00:00
@@ -199,7 +199,7 @@ Handlungsempfehlungen:
 Verhalten im Straßenverkehr anpassen";;2026-11-27T12:09:55+00:00;2026-11-28T09:51:23+00:00
 Kreis Main-Spessart;109677000;2.49.0.0.276.0.DWD.PVW.1795865880000.1ff8b35e-2688-483d-84a9-f230ae2f5775.DEU;2026-11-28T12:38:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-28T12:38:00+01:00;2026-11-28T16:00:00+01:00;2026-11-29T12:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt mäßiger Frost zwischen -2 °C und -6 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
-ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=-2 - -6 [°C];2026-11-28T11:37:48+00:00;2026-11-28T14:12:37+00:00
+ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=-2 - -6 [°C];2026-11-28T11:37:48+00:00;2026-11-28T14:59:02+00:00
 Kreis und Stadt Würzburg;909679999;2.49.0.0.276.0.DWD.PVW.1795260660000.7a1373e2-6820-4da7-a51c-dc57be61425a.DEU;2026-11-21T12:31:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-21T12:31:00+01:00;2026-11-21T21:00:00+01:00;2026-11-22T09:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt leichter Frost bis -4 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
 ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=>-4 [°C];2026-11-21T11:30:13+00:00;2026-11-22T07:53:14+00:00
@@ -292,4 +292,4 @@ Handlungsempfehlungen:
 Verhalten im Straßenverkehr anpassen";;2026-11-27T12:09:55+00:00;2026-11-28T09:51:23+00:00
 Kreis und Stadt Würzburg;909679999;2.49.0.0.276.0.DWD.PVW.1795865880000.1ff8b35e-2688-483d-84a9-f230ae2f5775.DEU;2026-11-28T12:38:00+01:00;Alert;Actual;;FROST;22;FROST;Minor;Immediate;Likely;Prepare;2026-11-28T12:38:00+01:00;2026-11-28T16:00:00+01:00;2026-11-29T12:00:00+01:00;Amtliche WARNUNG vor FROST;Es tritt mäßiger Frost zwischen -2 °C und -6 °C auf.;"Hinweis auf: mögliche Frostschäden. 
 Handlungsempfehlungen: 
-ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=-2 - -6 [°C];2026-11-28T11:37:48+00:00;2026-11-28T14:12:37+00:00
+ggf. Frostschutzmaßnahmen ergreifen";minimum temperature=-2 - -6 [°C];2026-11-28T11:37:48+00:00;2026-11-28T14:59:02+00:00
